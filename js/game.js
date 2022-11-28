@@ -36,4 +36,41 @@ class Game{
   rechargeAmmo() {}
 
   writeScore() {}
+
+  clean() {}
+
+  gameOver() {}
+}
+
+class Player{
+  constructor(x = 150, y = 450, width, height) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.image = undefined;
+  }
+
+  jump() {}
+
+  shoot() {}
+
+  rechargeBullets() {}
+}
+
+class Npc() {
+  constructor() {
+    this.x = 950;
+    this.y = 450;
+    this.width = 50;
+    this.height = 50;
+    this.role = undefined;
+    this.image = undefined;
+  }
+
+  _assignRole() {}
+
+  _assignImage() {}
+
+  _moveLeft() {}
 }
