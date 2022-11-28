@@ -1,17 +1,16 @@
 class Game{
   constructor(context) {
     this.ctx = context;
+    this.points = 0;
+    this.player = new Player(150, 450, 50, 50);
+    this.npcs = [];
   }
 
   _assignControls() {
-    // Controles del teclado
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
-        case 'ArrowLeft':
-          this.meatball.moveLeft();
-          break;
         case 'ArrowRight':
-          this.meatball.moveRight();
+          //action
           break;
         default:
           break;
@@ -27,4 +26,14 @@ class Game{
     this._assignControls();
     this._update();
   }
+
+  drawPlayer() {}
+
+  drawNpcs() {}
+
+  checkCollisions() {}
+
+  rechargeAmmo() {}
+
+  writeScore() {}
 }
