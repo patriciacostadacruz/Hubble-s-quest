@@ -10,7 +10,6 @@ class Game{
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case "ArrowRight":
-          console.log("right");
           this.drawBullet();
           break;
         default:
