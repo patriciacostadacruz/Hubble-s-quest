@@ -9,8 +9,9 @@ class Game{
   _assignControls() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
-        case 'ArrowRight':
-          //action
+        case "ArrowRight":
+          console.log("right");
+          this.drawBullet();
           break;
         default:
           break;
@@ -37,6 +38,11 @@ class Game{
   drawNpcs() {
     this.ctx.fillStyle = "red";
     this.ctx.fillRect(900, 450, 50, 50);
+  }
+
+  drawBullet() {
+    this.ctx.fillStyle = "black";
+    this.ctx.fillRect(160, 470, 8, 8);
   }
 
   checkCollisions() {}
