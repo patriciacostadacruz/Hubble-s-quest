@@ -1,26 +1,24 @@
-class Game{
+class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(150, 500, 50, 50);
-    this.npcs = new Npc(950, 500, 50, 50);
-    this.mag = 0; // used to store regenerated bullets
-    this.bullets = 8; // starting value
+    this.player = new Player(100, 380, 140, 140);
+    this.npcs = new Npc(900, 410, 100, 100);
+    this.bullet = new Bullet(210, 410, 50, 30);
   }
 
   _assignControls() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case "ArrowRight":
-          //this.player.shoot();
+          this.player.shoot();
           this.drawBullet();
+          this._moveLeft();
           break;
         case "ArrowUp":
-          console.log("up");
           this.player.jump();
           break;
         case "Enter":
-          console.log("Enter");
           this.player.recharge();
           break;
         default:
@@ -29,58 +27,59 @@ class Game{
     });
   }
 
+  _clean(){
+    this.ctx.clearRect(0, 0, 1000, 600);
+  }
+
   _update() {
+    this._clean();
+    this._writeScoreAndBullets();
+    this.drawPlayer();
+    this.drawNpcs();
+    this.npcs._moveLeft();
     window.requestAnimationFrame(() => this._update());
   }
 
   start() {
     this._assignControls();
-    this._update();
-    this._writeScoreAndBullets();
-    this.drawPlayer();
-    this.drawNpcs();
     this._regenerateAmmo();
+    this._update();
   }
 
   drawPlayer() {
-    this.ctx.fillStyle = "blue";
-    this.ctx.fillRect(100, 490, 50, 50);
-    // need to show image jerry
+    this.ctx.drawImage(this.player.image, this.player.x, this.player.y, this.player.width, this.player.height);
   }
 
   drawNpcs() {
-    this.ctx.fillStyle = "red";
-    this.ctx.fillRect(900, 490, 50, 50);
-    // need to show image enemy
+    this.ctx.drawImage(this.npcs.image, this.npcs.x, this.npcs.y, this.npcs.width, this.npcs.height);
   }
 
   drawBullet() {
-    this.ctx.fillStyle = "black";
-    this.ctx.fillRect(160, 510, 8, 8);
-    // need to show image bullet
+    this.ctx.drawImage(this.bullet.image, this.bullet.x, this.bullet.y, this.bullet.width, this.bullet.height);
   }
+
+    //Foreach enemy comprobar si la x < 0 -width => splice array lo quito + clearInterval elem.moveInterval//
 
   _regenerateAmmo() {
     setInterval(() => {
-      if (this.bullets > 8) {
-        this.mag += 1;
-        console.log(`Ammo: ${this.mag}`);
+      if (this.bullet.bullets > 8) {
+        this.bullet.mag += 1;
+        console.log(`Ammo: ${this.bullet.mag}`);
       }
     }, 5000);
   }
-  // not working
 
   _writeScoreAndBullets() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "20px Arial";
     this.ctx.fillText(`Points: ${this.points}`, 900, 50);
-    this.ctx.fillText(`Bullets: ${this.bullets}`, 900, 80);   
+    this.ctx.fillText(`Bullets: ${this.bullet.bullets}`, 900, 80);   
   }
 
   checkCollisions() {}
 
   gameOver() {
     canvas.classList.add('hidden');
-    // show loose page
+    // show lose page
   }
 }

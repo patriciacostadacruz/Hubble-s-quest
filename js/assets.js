@@ -1,5 +1,5 @@
 const jerry = new Image();
-jerry.src = "/images/player.jpg";
+jerry.src = "/images/player.png";
 
 const enemy = new Image();
 enemy.src = "/images/enemy.png";

@@ -1,5 +1,5 @@
-class Player{
-  constructor(x = 100, y = 450, width, height) {
+class Player {
+  constructor(x, y, width, height) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -8,16 +8,20 @@ class Player{
   }
   
   jump() {
-    game.ctx.clearRect(0, 0, 1000, 600);
-    this.y = this.y - 10;
+    setInterval(() => {
+      if(this.y > 280){
+        this.y = this.y - 15;
+      }
+    }, 100);
   }
+  //only goes up
 
   shoot() {
-    // display bullet image and move towards enemy -> right
-    game.bullets -= 1;
+    bullet.bullets -= 1;
   }
 
   recharge() {
-    game.bullets += game.mag;
+    bullet.bullets += bullet.mag;
+    bullet.mag = 0;
   }
 }

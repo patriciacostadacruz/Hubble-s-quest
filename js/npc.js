@@ -1,11 +1,12 @@
-class Npc{
-  constructor() {
-    this.x = 950;
-    this.y = 450;
-    this.width = 50;
-    this.height = 50;
+class Npc {
+  constructor(x, y, width, height) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
     this.role = undefined;
-    this.image = undefined;
+    this.image = enemy;
+    this.moveInterval = undefined;
   }
 
   _assignRole() {
@@ -25,14 +26,6 @@ class Npc{
   }
 
   _moveLeft() {
-    game.ctx.clearRect(0, 0, 1000, 600);
     this.x = this.x - 5;
-    if (this.x < 0 - this.width) {
-      // make it disappear
-    }
   }
-  
-  //setTimeout(() => {
-  //  setInterval(_moveLeft, 100);
-  //}, 2000);
 }
