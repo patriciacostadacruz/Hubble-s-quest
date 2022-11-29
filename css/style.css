@@ -3,20 +3,66 @@
   padding: 0;
 }
 
-/* Basic styles, change according to your style */
-
 #start-page,
 #lose-page {
   height: 600px;
   width: 1000px;
+  background-color: rgb(240, 178, 154);
+  color: white;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
-  border: 1px solid black;
+  border: none;
   margin-top: 30px;
+}
+
+#start-page {
+  background-image: url("../images/barcelona.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 1.25em;
+}
+
+#start-page h1 {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2.5em;
+  margin: 0 330px 45px 300px;
+  border: 5px solid rgba(255, 255, 255, 0.411);
+  border-radius: 40px;
+}
+
+#start-page p,
+#start-page ul {
+  background-color: rgba(240, 178, 154, 0.719);
+  margin: 20px 100px;
+}
+
+.controls {
+  list-style: none;
+}
+
+article {
+  margin-top: 150px;
+}
+
+#start {
+  color: white;
+  font-size: 1.75em;
+  background-color: salmon;
+  border: none;
+  padding: 5px 30px;
+  margin-top: 50px;
+  text-shadow: 2px 2px rgba(255, 255, 255, 0.459);
+  border-radius: 30px;
+}
+
+#start:hover {
+  background-color: rgb(243, 81, 63);
+  font-weight: bolder;
 }
 
 #lose-page {
@@ -24,13 +70,16 @@
 }
 
 canvas {
-  border: 1px solid black;
+  border: none;
   display: block;
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 50px;
-  background-image: url("../images/barcelona2.png");
-  background-size: cover;
+  background-image: url("../images/barcelona.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(240, 178, 154);;
 }
 
 /* Auxiliar classes */
