@@ -7,17 +7,17 @@ class Player{
     this.image = jerry;
   }
   
-  jump() {}
+  jump() {
+    game.ctx.clearRect(0, 0, 1000, 600);
+    this.y = this.y - 10;
+  }
 
   shoot() {
-    //const game = new Game();
-    //game.ctx.fillStyle = "black";
-    //game.ctx.fillRect(160, 470, 8, 8);
+    // display bullet image and move towards enemy -> right
+    game.bullets -= 1;
   }
 
   recharge() {
-    const game = new Game();
-    // wanted to define it outside to be used in all methods but have an error with max func call stack
     game.bullets += game.mag;
   }
 }
