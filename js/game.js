@@ -37,7 +37,8 @@ class Game {
     this.drawBullet();
     this._regenerateAmmo();
     this.npcs._generateNpcArr();
-    this.checkCollisions();
+    this.checkEnemyCollisions();
+    this.checkBulletCollisions();
     window.requestAnimationFrame(() => this._update());
   }
 
@@ -85,32 +86,20 @@ class Game {
     this.ctx.fillText(`Bullets: ${this.bullet.bullets}`, 900, 80);   
   }
 
-  checkCollisions() {
+  checkEnemyCollisions() {
     if (this.player.x < this.npcs.x + this.npcs.width && this.player.x + this.player.width > this.npcs.x && this.player.y < this.npcs.y + this.npcs.height && this.player.y + this.player.height > this.npcs.y) {
-      console.log("collision");
-      
+      // if (this.npcs.role === "enemy") {
+        console.log("Collision with enemy, game over");
+        this.points += 1;
+      // }
     }
-    // const playerXRight = this.player.x + this.player.width;
-    // const playerYBottom = this.player.y + this.player.height;
-    // const npcXRight = this.npcs.x + this.npcs.width;
-    // const npcYBottom = this.npcs.y + this.npcs.height;
-    // TEST1
-    //const overlapX = (this.player.x <= npcXRight && this.player.x >= this.npcs.x) || (playerXRight <= npcXRight && playerXRight >= this.npcs.x);
-    //const overlapY = (this.player.y <= npcYBottom && this.player.y >= this.npcs.y) || (playerYBottom <= npcYBottom && playerYBottom >= this.npcs.y);
-    //const collision = overlapX && overlapY;
-    //if (collision) {
-    //  console.log("Collision");
-    //}
-    // TEST 2
-    //if (
-    //  (this.player.x <= npcXRight && this.player.x >= this.npcs.x) || (playerXRight <= npcXRight && playerXRight >= this.npcs.x)
-    //) {
-    //  if (
-    //    (this.player.y <= npcYBottom && this.player.y >= this.npcs.y) || (playerYBottom <= npcYBottom && playerYBottom >= this.npcs.y)
-    //  ) {
-    //    console.log("Collision");
-    //  }
-    //}
+  }
+  // cannot make difference with npc roles, doesn't detect them
+
+  checkBulletCollisions() {
+    if (this.bullet.x < this.npcs.x + this.npcs.width && this.bullet.x + this.bullet.width > this.npcs.x && this.bullet.y < this.npcs.y + this.npcs.height && this.bullet.y + this.bullet.height > this.npcs.y) {
+      console.log("Bullet killed enemy, +1 points");
+    }
   }
 
   gameOver() {
