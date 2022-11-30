@@ -2,8 +2,8 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(100, 380, 140, 140);
-    this.npcs = new Npc(900, 410, 100, 100);
+    this.player = new Player(100, 360, 160, 180);
+    this.npcs = new Npc(900, 380, 100, 150);
     this.bullet = new Bullet(210, 410, 50, 30);
   }
 
@@ -12,8 +12,6 @@ class Game {
       switch (event.code) {
         case "ArrowRight":
           this.player.shoot();
-          this.drawBullet();
-          this._moveLeft();
           break;
         case "ArrowUp":
           this.player.jump();
@@ -36,13 +34,15 @@ class Game {
     this._writeScoreAndBullets();
     this.drawPlayer();
     this.drawNpcs();
-    this.npcs._moveLeft();
+    this.drawBullet();
+    this._regenerateAmmo();
+    this.npcs._generateNpcArr();
+    this.checkCollisions();
     window.requestAnimationFrame(() => this._update());
   }
 
   start() {
     this._assignControls();
-    this._regenerateAmmo();
     this._update();
   }
 
@@ -51,20 +51,29 @@ class Game {
   }
 
   drawNpcs() {
-    this.ctx.drawImage(this.npcs.image, this.npcs.x, this.npcs.y, this.npcs.width, this.npcs.height);
+    this.npcs.npcArr.forEach((npc) => {
+      this.ctx.drawImage(this.npcs.image, this.npcs.x, this.npcs.y, this.npcs.width, this.npcs.height);
+      this.npcs._moveLeft();
+      //if (this.npcs.x < 0 - this.npcs.width) {
+      //  this.npcs.npcArr.splice(removeNpc);
+      //}
+    });
   }
+// array is generated with 5 items, roles and images assigned but onyl shows first npc and then nothing
 
   drawBullet() {
-    this.ctx.drawImage(this.bullet.image, this.bullet.x, this.bullet.y, this.bullet.width, this.bullet.height);
+    if (this.player.shooting === "true") {
+      this.ctx.drawImage(this.bullet.image, this.bullet.x, this.bullet.y, this.bullet.width, this.bullet.height);
+      this.bullet._moveLeft();
+    }
   }
-
-    //Foreach enemy comprobar si la x < 0 -width => splice array lo quito + clearInterval elem.moveInterval//
+  // doesn't show bullet when shooting, only if condition is removed
 
   _regenerateAmmo() {
     setInterval(() => {
       if (this.bullet.bullets > 8) {
         this.bullet.mag += 1;
-        console.log(`Ammo: ${this.bullet.mag}`);
+        console.log(`Ammo stored: ${this.bullet.mag}`);
       }
     }, 5000);
   }
@@ -76,7 +85,33 @@ class Game {
     this.ctx.fillText(`Bullets: ${this.bullet.bullets}`, 900, 80);   
   }
 
-  checkCollisions() {}
+  checkCollisions() {
+    if (this.player.x < this.npcs.x + this.npcs.width && this.player.x + this.player.width > this.npcs.x && this.player.y < this.npcs.y + this.npcs.height && this.player.y + this.player.height > this.npcs.y) {
+      console.log("collision");
+      
+    }
+    // const playerXRight = this.player.x + this.player.width;
+    // const playerYBottom = this.player.y + this.player.height;
+    // const npcXRight = this.npcs.x + this.npcs.width;
+    // const npcYBottom = this.npcs.y + this.npcs.height;
+    // TEST1
+    //const overlapX = (this.player.x <= npcXRight && this.player.x >= this.npcs.x) || (playerXRight <= npcXRight && playerXRight >= this.npcs.x);
+    //const overlapY = (this.player.y <= npcYBottom && this.player.y >= this.npcs.y) || (playerYBottom <= npcYBottom && playerYBottom >= this.npcs.y);
+    //const collision = overlapX && overlapY;
+    //if (collision) {
+    //  console.log("Collision");
+    //}
+    // TEST 2
+    //if (
+    //  (this.player.x <= npcXRight && this.player.x >= this.npcs.x) || (playerXRight <= npcXRight && playerXRight >= this.npcs.x)
+    //) {
+    //  if (
+    //    (this.player.y <= npcYBottom && this.player.y >= this.npcs.y) || (playerYBottom <= npcYBottom && playerYBottom >= this.npcs.y)
+    //  ) {
+    //    console.log("Collision");
+    //  }
+    //}
+  }
 
   gameOver() {
     canvas.classList.add('hidden');

@@ -6,11 +6,11 @@ class Npc {
     this.height = height;
     this.role = undefined;
     this.image = enemy;
-    this.moveInterval = undefined;
+    this.npcArr = [];
   }
 
   _assignRole() {
-    if (Math.floor(Math.random() * 4) > 2) {
+    if (Math.floor(Math.random() * 10) > 4) {
       this.role = "enemy";
     } else {
       this.role = "friend";
@@ -26,6 +26,20 @@ class Npc {
   }
 
   _moveLeft() {
-    this.x = this.x - 5;
+    this.x = this.x - 1.5;
+  }
+
+  _generateNpcArr() {
+    setInterval(() => {
+      //console.log(`${this.npcArr.length}`);
+      if (this.npcArr.length < 5) {
+        const newNpc = new Npc();
+        newNpc._assignRole();
+        //console.log(`${newNpc.role}`);
+        newNpc._assignImage();
+        //console.log(`${newNpc.image}`);
+        this.npcArr.push(newNpc);
+      }
+    }, 1500);
   }
 }

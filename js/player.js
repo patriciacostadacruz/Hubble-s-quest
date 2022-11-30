@@ -5,23 +5,35 @@ class Player {
     this.width = width;
     this.height = height;
     this.image = jerry;
+    this.shooting = false;
   }
   
   jump() {
     setInterval(() => {
-      if(this.y > 280){
+      if(this.y > 180){
         this.y = this.y - 15;
-      }
-    }, 100);
+      } 
+    }, 60);
   }
   //only goes up
 
   shoot() {
-    bullet.bullets -= 1;
+    console.log("shooting");
+    const newBullet = new Bullet(210, 410, 50, 30);
+    if (newBullet.bullets > 0) {
+      this.shooting === true;
+      newBullet._moveRight();
+      newBullet.bullets -= 1;
+      console.log(`Bullets remain: ${newBullet.bullets}`);
+    }
+    this.shooting === false;
   }
+  // doesn't let bullet show AND only deducts one bullet and then nothing
 
   recharge() {
     bullet.bullets += bullet.mag;
     bullet.mag = 0;
+    console.log(`${bullet.bullets}`);
+    // says undefined and then NaN
   }
 }
