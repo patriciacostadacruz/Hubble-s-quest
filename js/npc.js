@@ -31,13 +31,13 @@ class Npc {
 
   _generateNpcArr() {
     setInterval(() => {
-      //console.log(`${this.npcArr.length}`);
+      // console.log(`${this.npcArr.length}`);
       if (this.npcArr.length < 5) {
         const newNpc = new Npc();
         newNpc._assignRole();
-        //console.log(`${newNpc.role}`);
+        // console.log(`${newNpc.role}`);
         newNpc._assignImage();
-        //console.log(`${newNpc.image}`);
+        // console.log(`${newNpc.image}`);
         this.npcArr.push(newNpc);
       }
     }, 1500);

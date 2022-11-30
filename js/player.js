@@ -9,13 +9,21 @@ class Player {
   }
   
   jump() {
-    setInterval(() => {
-      if(this.y > 180){
+    const baseline = this.y + this.height;
+    const upInterval = setInterval(() => {
         this.y = this.y - 15;
-      } 
     }, 60);
+    if (this.y < 220) {
+      clearInterval(upInterval);
+      const downInterval = setInterval(() => {
+        this.y = this.y + 15;
+      }, 50);
+      if (this.y > baseline) {
+        clearInterval(downInterval);
+      }
+    }
   }
-  //only goes up
+  // only goes up without stopping
 
   shoot() {
     console.log("shooting");
@@ -34,6 +42,6 @@ class Player {
     bullet.bullets += bullet.mag;
     bullet.mag = 0;
     console.log(`${bullet.bullets}`);
-    // says undefined and then NaN
+    // says NaN
   }
 }

@@ -69,6 +69,10 @@ article {
   display: none;
 }
 
+#lose-page h1 {
+  text-shadow: 2px 2px salmon;
+}
+
 canvas {
   border: none;
   display: block;

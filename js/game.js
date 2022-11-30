@@ -55,18 +55,22 @@ class Game {
     this.npcs.npcArr.forEach((npc) => {
       this.ctx.drawImage(this.npcs.image, this.npcs.x, this.npcs.y, this.npcs.width, this.npcs.height);
       this.npcs._moveLeft();
-      //if (this.npcs.x < 0 - this.npcs.width) {
-      //  this.npcs.npcArr.splice(removeNpc);
-      //}
+      // if (this.npcs.x < 0 - this.npcs.width) {
+      //   let index = this.npcs.npcArr.indexOf(npc);
+      //   this.npcs.splice(index, 1);
+      // }
     });
   }
-// array is generated with 5 items, roles and images assigned but onyl shows first npc and then nothing
+// array is generated with 5 items, roles and images assigned but only shows first npc and then nothing. Also cannot remove npc from arr
 
   drawBullet() {
-    if (this.player.shooting === "true") {
+    // if (this.player.shooting === "true") {
       this.ctx.drawImage(this.bullet.image, this.bullet.x, this.bullet.y, this.bullet.width, this.bullet.height);
-      this.bullet._moveLeft();
-    }
+      this.bullet._moveRight();
+      if (this.bullet.x < 0 - this.bullet.x) {
+        // make it disappear
+      }
+    // }
   }
   // doesn't show bullet when shooting, only if condition is removed
 
@@ -90,7 +94,7 @@ class Game {
     if (this.player.x < this.npcs.x + this.npcs.width && this.player.x + this.player.width > this.npcs.x && this.player.y < this.npcs.y + this.npcs.height && this.player.y + this.player.height > this.npcs.y) {
       // if (this.npcs.role === "enemy") {
         console.log("Collision with enemy, game over");
-        this.points += 1;
+        this.gameOver();
       // }
     }
   }
@@ -99,11 +103,13 @@ class Game {
   checkBulletCollisions() {
     if (this.bullet.x < this.npcs.x + this.npcs.width && this.bullet.x + this.bullet.width > this.npcs.x && this.bullet.y < this.npcs.y + this.npcs.height && this.bullet.y + this.bullet.height > this.npcs.y) {
       console.log("Bullet killed enemy, +1 points");
+      this.points += 1;
     }
   }
 
   gameOver() {
     canvas.classList.add('hidden');
-    // show lose page
+    const loosePage = document.getElementById("lose-page");
+    loosePage.style = "display: block";
   }
 }
