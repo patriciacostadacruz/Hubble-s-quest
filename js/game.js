@@ -67,7 +67,7 @@ class Game {
     // if (this.player.shooting === "true") {
       this.ctx.drawImage(this.bullet.image, this.bullet.x, this.bullet.y, this.bullet.width, this.bullet.height);
       this.bullet._moveRight();
-      if (this.bullet.x < 0 - this.bullet.x) {
+      if (this.bullet.x < 0 - this.bullet.width) {
         // make it disappear
       }
     // }
@@ -93,7 +93,7 @@ class Game {
   checkEnemyCollisions() {
     if (this.player.x < this.npcs.x + this.npcs.width && this.player.x + this.player.width > this.npcs.x && this.player.y < this.npcs.y + this.npcs.height && this.player.y + this.player.height > this.npcs.y) {
       // if (this.npcs.role === "enemy") {
-        console.log("Collision with enemy, game over");
+        // make npc disappear
         this.gameOver();
       // }
     }
@@ -102,7 +102,7 @@ class Game {
 
   checkBulletCollisions() {
     if (this.bullet.x < this.npcs.x + this.npcs.width && this.bullet.x + this.bullet.width > this.npcs.x && this.bullet.y < this.npcs.y + this.npcs.height && this.bullet.y + this.bullet.height > this.npcs.y) {
-      console.log("Bullet killed enemy, +1 points");
+      // make npc and bullet disappear
       this.points += 1;
     }
   }

@@ -30,8 +30,8 @@
 #start-page h1 {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 2.5em;
-  margin: 0 330px 45px 300px;
-  border: 5px solid rgba(255, 255, 255, 0.411);
+  text-shadow: 3px 3px salmon;
+  margin: 0 280px 45px 300px;
   border-radius: 40px;
 }
 
@@ -39,6 +39,7 @@
 #start-page ul {
   background-color: rgba(240, 178, 154, 0.719);
   margin: 20px 100px;
+  color: rgb(240, 86, 69);
 }
 
 .controls {
@@ -49,20 +50,21 @@ article {
   margin-top: 150px;
 }
 
-#start {
+button {
   color: white;
   font-size: 1.75em;
   background-color: salmon;
   border: none;
   padding: 5px 30px;
-  margin-top: 50px;
-  text-shadow: 2px 2px rgba(255, 255, 255, 0.459);
+  margin-top: 60px;
+  text-shadow: 2px 2px rgb(235, 226, 152);
   border-radius: 30px;
 }
 
-#start:hover {
+button:hover {
   background-color: rgb(243, 81, 63);
   font-weight: bolder;
+  transform: scale(1.5);
 }
 
 #lose-page {
@@ -71,6 +73,12 @@ article {
 
 #lose-page h1 {
   text-shadow: 2px 2px salmon;
+  padding: 200px;
+}
+
+#try-again {
+  position: absolute;
+  margin: 0 -100px;
 }
 
 canvas {
