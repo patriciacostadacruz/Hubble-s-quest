@@ -5,6 +5,7 @@ class Game {
     this.player = new Player(100, 360, 160, 180);
     this.npcs = new Npc(900, 380, 100, 150);
     this.bullet = new Bullet(210, 410, 50, 30);
+    this.level = 1;
   }
 
   _assignControls() {
@@ -32,6 +33,7 @@ class Game {
   _update() {
     this._clean();
     this._writeScoreAndBullets();
+    this._displayLevel();
     this.drawPlayer();
     this.drawNpcs();
     this.drawBullet();
@@ -110,6 +112,16 @@ class Game {
       // if npc is enemy: +1
       this.points += 1;
     }
+  }
+
+  _levelIncrease() {
+    // increase level based on time playing? 1 min?
+  }
+
+  _displayLevel() {
+    this.ctx.fillStyle = "white";
+    this.ctx.font = "20px Arial";
+    this.ctx.fillText(`Level: ${this.level}`, 900, 580);  
   }
 
   gameOver() {
