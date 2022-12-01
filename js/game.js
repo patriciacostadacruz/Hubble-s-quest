@@ -94,7 +94,10 @@ class Game {
     if (this.player.x < this.npcs.x + this.npcs.width && this.player.x + this.player.width > this.npcs.x && this.player.y < this.npcs.y + this.npcs.height && this.player.y + this.player.height > this.npcs.y) {
       // if (this.npcs.role === "enemy") {
         // make npc disappear
-        this.gameOver();
+        this.points -=1;
+        if (this.points < 0) {
+          this.gameOver();
+        }
       // }
     }
   }
@@ -103,6 +106,8 @@ class Game {
   checkBulletCollisions() {
     if (this.bullet.x < this.npcs.x + this.npcs.width && this.bullet.x + this.bullet.width > this.npcs.x && this.bullet.y < this.npcs.y + this.npcs.height && this.bullet.y + this.bullet.height > this.npcs.y) {
       // make npc and bullet disappear
+      // if npc is friend : gameOver
+      // if npc is enemy: +1
       this.points += 1;
     }
   }
