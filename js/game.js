@@ -116,6 +116,8 @@ class Game {
 
   _levelIncrease() {
     // increase level based on time playing? 1 min?
+    this.level += 1;
+    // change NPC speed: _moveLeft() should change to this.x = this.x - 2 and then - 2.5; ---- to be added here on in moveLeft() method directly based on level condition
   }
 
   _displayLevel() {
