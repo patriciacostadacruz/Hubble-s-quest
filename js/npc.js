@@ -5,8 +5,7 @@ class Npc {
     this.width = width;
     this.height = height;
     this.role = undefined;
-    this.image = enemy;
-    this.npcArr = [];
+    this.image = undefined;
   }
 
   _assignRole() {
@@ -27,19 +26,6 @@ class Npc {
 
   _moveLeft() {
     this.x = this.x - 1.5;
-  }
-
-  _generateNpcArr() {
-    setInterval(() => {
-      // console.log(`${this.npcArr.length}`);
-      if (this.npcArr.length < 5) {
-        const newNpc = new Npc();
-        newNpc._assignRole();
-        // console.log(`${newNpc.role}`);
-        newNpc._assignImage();
-        // console.log(`${newNpc.image}`);
-        this.npcArr.push(newNpc);
-      }
-    }, 1500);
+    // need to make this faster as level goes up
   }
 }

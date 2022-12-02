@@ -5,7 +5,10 @@ class Player {
     this.width = width;
     this.height = height;
     this.image = jerry;
-    this.shooting = false;
+    this.bulletCapacity = 7;
+    this.bulletCount = 0;
+    this.bulletIndex = 0;
+    this.bullets = [];
   }
   
   jump() {
@@ -16,32 +19,41 @@ class Player {
     if (this.y < 220) {
       clearInterval(upInterval);
       const downInterval = setInterval(() => {
-        this.y = this.y + 15;
+        this.y = this.y + 12;
       }, 50);
       if (this.y > baseline) {
         clearInterval(downInterval);
       }
     }
   }
-  // only goes up without stopping
+
+  _charge() {
+    for (let i=0; i < this.bulletCapacity; i++) {
+      const newBullet = new Bullet(210, this.y + 30, 50, 30);
+      this.bullets.push(newBullet);
+      this.bulletCount = this.bullets.length;
+    }
+  }
 
   shoot() {
-    console.log("shooting");
-    const newBullet = new Bullet(210, 410, 50, 30);
-    if (newBullet.bullets > 0) {
-      this.shooting === true;
-      newBullet._moveRight();
-      newBullet.bullets -= 1;
-      console.log(`Bullets remain: ${newBullet.bullets}`);
+    if (this.bullets.length > 0) {
+      this.bullets[this.bulletIndex].isShot = true;
+      this.bullets[this.bulletIndex]._moveRight();
+      this.bulletIndex++;
+      this.bulletCount -=1;
+    } else {
+      // display message as no bullet, please recharge
     }
-    this.shooting === false;
   }
-  // doesn't let bullet show AND only deducts one bullet and then nothing
 
   recharge() {
-    bullet.bullets += bullet.mag;
-    bullet.mag = 0;
-    console.log(`${bullet.bullets}`);
-    // says NaN
+    if (this.bulletCount <= 0) {
+      for (let i=0; i<this.bulletCapacity; i++) {
+        const newBullet = new Bullet(210, this.y + 30, 50, 30);
+        this.bullets.push(newBullet);
+      }
+    } else if (this.bulletCount > 0) {
+      // display message as to not able to recharge when have bullets
+    }
   }
 }

@@ -71,6 +71,10 @@ button:hover {
   display: none;
 }
 
+#win-page {
+  display: none;
+}
+
 #lose-page h1 {
   text-shadow: 2px 2px salmon;
   padding: 200px;
