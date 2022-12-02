@@ -3,8 +3,7 @@ class Game {
     this.ctx = context;
     this.points = 0;
     this.player = new Player(100, 360, 160, 180);
-    this.npcs = new Npc(900, 380, 100, 150);
-    this.bullet = new Bullet(210, 410, 50, 30);
+    this.npcs = [];
     this.level = 1;
   }
 
@@ -18,7 +17,7 @@ class Game {
           this.player.jump();
           break;
         case "Enter":
-          this.player.recharge();
+          this.recharge();
           break;
         default:
           break;
@@ -32,86 +31,99 @@ class Game {
 
   _update() {
     this._clean();
+    this.player._charge();
     this._writeScoreAndBullets();
     this._displayLevel();
-    this.drawPlayer();
-    this.drawNpcs();
-    this.drawBullet();
-    this._regenerateAmmo();
-    this.npcs._generateNpcArr();
-    this.checkEnemyCollisions();
-    this.checkBulletCollisions();
+    this._drawPlayer();
+    this._generateNpcArr();
+    this._drawNpcs();
+    this._drawBullet();
+    // this._regenerateAmmo();
+    this.checkCollisions();
+    // this.checkBulletCollisions();
+    this._generateNpcArr()
+    // this._levelIncrease();
     window.requestAnimationFrame(() => this._update());
   }
 
   start() {
     this._assignControls();
     this._update();
+    
   }
 
-  drawPlayer() {
+  _drawPlayer() {
     this.ctx.drawImage(this.player.image, this.player.x, this.player.y, this.player.width, this.player.height);
   }
 
-  drawNpcs() {
-    this.npcs.npcArr.forEach((npc) => {
-      this.ctx.drawImage(this.npcs.image, this.npcs.x, this.npcs.y, this.npcs.width, this.npcs.height);
-      this.npcs._moveLeft();
-      // if (this.npcs.x < 0 - this.npcs.width) {
-      //   let index = this.npcs.npcArr.indexOf(npc);
-      //   this.npcs.splice(index, 1);
-      // }
+  _generateNpcArr() {
+    setInterval(() => {
+      if (this.npcs.length < 5) {
+        const newNpc = new Npc(860, 370, 120, 170);
+        newNpc._assignRole();
+        newNpc._assignImage();
+        this.npcs.push(newNpc);
+      }
+    }, 1500);
+  } 
+
+  _drawNpcs() {
+    this.npcs.forEach((npc) => {
+      this.ctx.drawImage(this.npcs[0].image, this.npcs[0].x, this.npcs[0].y, this.npcs[0].width, this.npcs[0].height);
+      this.npcs[0]._moveLeft();
+      if (this.npcs[0].x < 0 - this.npcs[0].width) {
+        this.npcs.splice(0, 1);
+      }
     });
   }
-// array is generated with 5 items, roles and images assigned but only shows first npc and then nothing. Also cannot remove npc from arr
 
-  drawBullet() {
-    // if (this.player.shooting === "true") {
-      this.ctx.drawImage(this.bullet.image, this.bullet.x, this.bullet.y, this.bullet.width, this.bullet.height);
-      this.bullet._moveRight();
-      if (this.bullet.x < 0 - this.bullet.width) {
-        // make it disappear
+  _drawBullet() {
+    this.player.bullets.forEach(bullet => {
+      if(bullet.isShot){
+      this.ctx.drawImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height);
       }
-    // }
+    });
   }
-  // doesn't show bullet when shooting, only if condition is removed
 
-  _regenerateAmmo() {
-    setInterval(() => {
-      if (this.bullet.bullets > 8) {
-        this.bullet.mag += 1;
-        console.log(`Ammo stored: ${this.bullet.mag}`);
-      }
-    }, 5000);
-  }
+  // _regenerateAmmo() {
+    // setInterval(() => {
+      // this.player.mag += 1;
+      // console.log("added 1 ammo");
+    // }, 1000);
+  // }
+// 
+  // recharge() {
+    // this.player.bullets += this.player.mag;
+    // this.player.mag = 0;
+  // }
 
   _writeScoreAndBullets() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "20px Arial";
     this.ctx.fillText(`Points: ${this.points}`, 900, 50);
-    this.ctx.fillText(`Bullets: ${this.bullet.bullets}`, 900, 80);   
+    this.ctx.fillText(`Bullets: ${this.player.bullets.length}`, 900, 80);   
   }
 
-  checkEnemyCollisions() {
-    if (this.player.x < this.npcs.x + this.npcs.width && this.player.x + this.player.width > this.npcs.x && this.player.y < this.npcs.y + this.npcs.height && this.player.y + this.player.height > this.npcs.y) {
-      // if (this.npcs.role === "enemy") {
-        // make npc disappear
-        this.points -=1;
-        if (this.points < 0) {
-          this.gameOver();
+  checkCollisions() {
+    this.npcs.forEach((npc) => {
+      if (this.player.x < npc.x + npc.width && this.player.x + this.player.width > npc.x && this.player.y < npc.y + npc.height && this.player.y + this.player.height > npc.y) {
+        if (npc.role === "enemy") {
+          this.points -= 1;
+          if (this.points < 0) {
+            this.gameOver();
+          }
         }
-      // }
-    }
-  }
-  // cannot make difference with npc roles, doesn't detect them
-
-  checkBulletCollisions() {
-    if (this.bullet.x < this.npcs.x + this.npcs.width && this.bullet.x + this.bullet.width > this.npcs.x && this.bullet.y < this.npcs.y + this.npcs.height && this.bullet.y + this.bullet.height > this.npcs.y) {
-      // make npc and bullet disappear
-      // if npc is friend : gameOver
-      // if npc is enemy: +1
-      this.points += 1;
-    }
+      }
+      this.player.bullets.forEach((bullet) => {
+        if (bullet.x < npc.x + npc.width && bullet.x + bullet.width > npc.x && bullet.y < npc.y + npc.height && bullet.y + bullet.height > npc.y) {
+          if (npc.role === "enemy") {
+            this.points += 1;
+          } else if (npc.role === "friend") {
+            this.gameOver();
+          };
+        }
+      });
+    });
   }
 
   _levelIncrease() {
