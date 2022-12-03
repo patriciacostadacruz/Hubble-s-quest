@@ -16,7 +16,6 @@ Minimum user stories:
 
 - User can see a start screen with instructions and controls, and also an end game screen.
 - User can see a board with player and enemies/friends appearing from the right and a score and bullets left.
-- User can jump over friendly NPCs to avoid them. Touching them doesn't remove points.
 - User can shoot enemies to kill them and win points.
 - User can recharge bullets.
 - User can loose if a friendly NPC is killed.
@@ -31,7 +30,6 @@ Minimum user stories:
 - Collision between an enemy and the player also displays a visual effect.
 - Level increases as the game goes.
 - User can see the level at the bottom right of the screen.
-- User can pause/resume the game.
 
 ## File structure
 

@@ -4,6 +4,7 @@
 }
 
 #start-page,
+#win-page,
 #lose-page {
   height: 600px;
   width: 1000px;
@@ -73,6 +74,10 @@ button:hover {
 
 #win-page {
   display: none;
+}
+
+#win-page h1 {
+  text-align: center;
 }
 
 #lose-page h1 {

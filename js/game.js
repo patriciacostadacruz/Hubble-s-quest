@@ -2,11 +2,10 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(100, 360, 140, 180, ctx);
+    this.player = new Player(100, 360, 140, 180, this.ctx);
     this.npcs = [];
     this.level = 1;
     this.generateInterval = undefined;
-    // this.gamePaused = false;
   }
 
   _assignControls() {
@@ -15,14 +14,8 @@ class Game {
         case "ArrowRight":
           this.player.shoot();
           break;
-        case "ArrowUp":
-          this.player.jump();
-          break;
-        case "Enter":
-          this.player.recharge();
-          break;
         case "Space":
-          this.pausegame();
+          this.player.recharge();
           break;
         default:
           break;
@@ -43,7 +36,6 @@ class Game {
     this._drawBullet();
     this._checkBodyCollision();
     this._checkBulletCollision();
-    this._levelIncrease();
     this.win();
     window.requestAnimationFrame(() => this._update());
   }
@@ -117,10 +109,10 @@ class Game {
             const bulletIndex = this.player.bullets.indexOf(bullet);
             if (bullet.x < npc.x + npc.width && bullet.x + bullet.width > npc.x && bullet.y < npc.y + npc.height && bullet.y + bullet.height > npc.y) {
               if (npc.role === "enemy" && bullet.isShot) {
-                console.log(bullet.isShot);
                 this.points += 1;
                 this.npcs.splice(npcIndex, 1);
                 this.player.bullets.splice(bulletIndex, 1);
+                this._levelIncrease();
               } else if (npc.role === "friend" && bullet.isShot) {
                 this.npcs.splice(npcIndex, 1);
                 this.player.bullets.splice(bulletIndex, 1);
@@ -133,16 +125,11 @@ class Game {
 
 
   _levelIncrease() {
-    let increase = false;
     if (this.points === 6 || this.points === 12) {
-      increase = true;
-      if (increase) {
-        this.level += 1;
-        this.ctx.fillStyle = "white";
-        this.ctx.font = "40px Arial";
-        this.ctx.fillText(`Next level: ${this.level}`, 500, 300); 
-        increase = false;
-      }
+      this.level += 1;
+      this.ctx.fillStyle = "white";
+      this.ctx.font = "40px Arial";
+      this.ctx.fillText(`Next level: ${this.level}`, 400, 300); 
     }
   }
 
@@ -151,15 +138,6 @@ class Game {
     this.ctx.font = "20px Arial";
     this.ctx.fillText(`Level: ${this.level}`, 900, 580);  
   }
-
-  // pausegame() {
-    // if (!this.gamePaused) {
-      // this.game = clearTimeout(this.game);
-      // this.gamePaused = true;
-    // } else if (this.gamePaused) {
-      // this.gamePaused = false;
-    // }
-  // }
 
   gameOver() {
     // setTimeout(() => {
@@ -171,7 +149,7 @@ class Game {
   }
 
   win() {
-    if (this.points === 18) {
+    if (this.points === 1) {
       canvas.classList.add('hidden');
       clearInterval(this.generateInterval);
       const winPage = document.getElementById("win-page");

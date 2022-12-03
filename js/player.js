@@ -12,20 +12,11 @@ class Player {
     this.bullets = [];
   }   
 
-  jump() {
-    setInterval(() => {
-      if (this.y > 150) {
-        this.y -= 15;
-      }
-    }, 60);
-  }
-
   _charge() {
     for (let i=0; i < this.bulletCapacity; i++) {
       const newBullet = new Bullet(210, this.y + 30, 50, 30);
       this.bullets.push(newBullet);
       this.bulletCount = this.bullets.length;
-      console.log('Number of bullets beginning: ', this.bullets);
     }
   }
 
@@ -34,7 +25,6 @@ class Player {
       let startCounting = 1;
       let lastBullet = this.bullets[this.bullets.length-startCounting];
       while (lastBullet.isShot) {
-        console.log(lastBullet);
         startCounting++;
         lastBullet = this.bullets[this.bullets.length-startCounting];
       } 
@@ -51,12 +41,11 @@ class Player {
       for (let i=0; i<this.bulletCapacity; i++) {
         const newBullet = new Bullet(210, this.y + 30, 50, 30);
         this.bullets.push(newBullet);
-        console.log("charged");
       }
     } else if (this.bulletCount > 0) {
       this.ctx.fillStyle = "white";
       this.ctx.font = "30px Arial";
-      this.ctx.fillText(`Points: ${this.points}`, 900, 50);
+      this.ctx.fillText("You still have bullets", 500, 580);
       // display message as to not able to recharge when have bullets
     }
     this.bulletCount = this.bullets.length;

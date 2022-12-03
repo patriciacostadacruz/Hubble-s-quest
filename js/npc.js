@@ -27,7 +27,6 @@ class Npc {
   _moveLeft() {
     setInterval(() => {
       this.x = this.x - 20;
-    // need to make this faster as level goes up
     }, 50); 
   }
 }
