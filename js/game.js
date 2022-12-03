@@ -2,7 +2,7 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(100, 360, 160, 180);
+    this.player = new Player(100, 360, 140, 180, ctx);
     this.npcs = [];
     this.level = 1;
     this.generateInterval = undefined;
@@ -42,7 +42,7 @@ class Game {
     this._drawPlayer();
     this._drawBullet();
     this._checkBodyCollision();
-    this._checkBulletCollisions();
+    this._checkBulletCollision();
     this._levelIncrease();
     this.win();
     window.requestAnimationFrame(() => this._update());
@@ -62,15 +62,13 @@ class Game {
   _generateNpcArr() {
     this.generateInterval = setInterval(() => {
       if (this.npcs.length < 100) {
-        const newNpc = new Npc(1100, 370, 120, 170);
+        const newNpc = new Npc(1100, 370, 120, 160);
         newNpc._assignRole();
         newNpc._assignImage();
         newNpc._moveLeft();
         this.npcs.push(newNpc);
-        console.log(newNpc);
       }
     }, 2000);
-    console.log(this.npcs);
   } 
 
   _drawNpcs() {
@@ -103,7 +101,6 @@ class Game {
       const npcIndex = this.npcs.indexOf(npc);
       if (this.player.x < npc.x + npc.width && this.player.x + this.player.width > npc.x && this.player.y < npc.y + npc.height && this.player.y + this.player.height > npc.y) {
         if (npc.role === "enemy") {
-          console.log(npc);
           this.points -= 1;
           this.npcs.splice(npcIndex, 1);
           if (this.points <= 0) {
@@ -113,13 +110,14 @@ class Game {
       }
      });
   }
-  _checkBulletCollisions(){
+  _checkBulletCollision() {
     this.npcs.forEach((npc) => {
       const npcIndex = this.npcs.indexOf(npc);
           this.player.bullets.forEach((bullet) => {
             const bulletIndex = this.player.bullets.indexOf(bullet);
             if (bullet.x < npc.x + npc.width && bullet.x + bullet.width > npc.x && bullet.y < npc.y + npc.height && bullet.y + bullet.height > npc.y) {
               if (npc.role === "enemy" && bullet.isShot) {
+                console.log(bullet.isShot);
                 this.points += 1;
                 this.npcs.splice(npcIndex, 1);
                 this.player.bullets.splice(bulletIndex, 1);
@@ -135,8 +133,16 @@ class Game {
 
 
   _levelIncrease() {
+    let increase = false;
     if (this.points === 6 || this.points === 12) {
-      this.level++;
+      increase = true;
+      if (increase) {
+        this.level += 1;
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "40px Arial";
+        this.ctx.fillText(`Next level: ${this.level}`, 500, 300); 
+        increase = false;
+      }
     }
   }
 
@@ -158,14 +164,14 @@ class Game {
   gameOver() {
     // setTimeout(() => {
       canvas.classList.add('hidden');
+      clearInterval(this.generateInterval);
       const loosePage = document.getElementById("lose-page");
       loosePage.style = "display: block";
-      clearInterval(this.generateInterval);
     // }, 2000);
   }
 
   win() {
-    if (this.points > 18) {
+    if (this.points === 18) {
       canvas.classList.add('hidden');
       clearInterval(this.generateInterval);
       const winPage = document.getElementById("win-page");

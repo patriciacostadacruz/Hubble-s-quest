@@ -11,6 +11,7 @@ class Bullet {
   _moveRight()  {
     setInterval(() => {
         this.x = this.x + 14;
-    }, 50)
+        // this can also go faster al level goes up
+    }, 50);
   }
 }

@@ -9,7 +9,7 @@ class Npc {
   }
 
   _assignRole() {
-    if (Math.floor(Math.random() * 10) > 4) {
+    if (Math.floor(Math.random() * 5) > 2) {
       this.role = "enemy";
     } else {
       this.role = "friend";
@@ -25,7 +25,9 @@ class Npc {
   }
 
   _moveLeft() {
-    this.x = this.x - 1.5;
+    setInterval(() => {
+      this.x = this.x - 20;
     // need to make this faster as level goes up
+    }, 50); 
   }
 }
