@@ -3,7 +3,7 @@ window.onload = function () {
   const ctx = canvas.getContext('2d');
   const startPage = document.getElementById('start-page');
   const startButton = document.getElementById('start');
-  const replayButton = document.getElementById("try-again");
+  const tryAgainButton = document.getElementById("try-again");
   const playAgainButton = document.getElementById("play-again");
   const winPage = document.getElementById("win-page");
   const loosePage = document.getElementById("lose-page");
@@ -15,7 +15,7 @@ window.onload = function () {
     game.start();
   };
 
-  replayButton.onclick = function () {
+  tryAgainButton.onclick = function () {
     loosePage.style = "display: none";
     canvas.classList.remove('hidden');
     const game = new Game(ctx);
@@ -24,9 +24,10 @@ window.onload = function () {
 
   playAgainButton.onclick = function () {
     winPage.style = "display: none";
+    loosePage.style = "display: none";
     canvas.classList.remove('hidden');
     const game = new Game(ctx);
     game.start();
-  }  
-
+    // fix button not working / win page not disappearing
+  }
 }

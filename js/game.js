@@ -130,6 +130,7 @@ class Game {
       this.ctx.fillStyle = "white";
       this.ctx.font = "40px Arial";
       this.ctx.fillText(`Next level: ${this.level}`, 400, 300); 
+      // make message show longer;
     }
   }
 
@@ -140,16 +141,16 @@ class Game {
   }
 
   gameOver() {
-    // setTimeout(() => {
       canvas.classList.add('hidden');
       clearInterval(this.generateInterval);
       const loosePage = document.getElementById("lose-page");
+      const winPage = document.getElementById("win-page");
+      winPage.style = "display: none";
       loosePage.style = "display: block";
-    // }, 2000);
   }
 
   win() {
-    if (this.points === 1) {
+    if (this.points === 18) {
       canvas.classList.add('hidden');
       clearInterval(this.generateInterval);
       const winPage = document.getElementById("win-page");
