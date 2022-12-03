@@ -9,22 +9,14 @@ class Player {
     this.bulletCount = 0;
     this.bulletIndex = 0;
     this.bullets = [];
-  }
-  
+  }   
+
   jump() {
-    const baseline = this.y + this.height;
-    const upInterval = setInterval(() => {
-        this.y = this.y - 15;
-    }, 60);
-    if (this.y < 220) {
-      clearInterval(upInterval);
-      const downInterval = setInterval(() => {
-        this.y = this.y + 12;
-      }, 50);
-      if (this.y > baseline) {
-        clearInterval(downInterval);
+    setInterval(() => {
+      if (this.y > 150) {
+        this.y -= 15;
       }
-    }
+    }, 60);
   }
 
   _charge() {
@@ -39,6 +31,8 @@ class Player {
     if (this.bullets.length > 0) {
       this.bullets[this.bulletIndex].isShot = true;
       this.bullets[this.bulletIndex]._moveRight();
+      console.log(bullet.isShot);
+      console.log(this.bulletIndex);
       this.bulletIndex++;
       this.bulletCount -=1;
     } else {
@@ -47,12 +41,15 @@ class Player {
   }
 
   recharge() {
-    if (this.bulletCount <= 0) {
+    if (this.bulletCount === 0) {
       for (let i=0; i<this.bulletCapacity; i++) {
         const newBullet = new Bullet(210, this.y + 30, 50, 30);
         this.bullets.push(newBullet);
+        this.bulletCount = this.bullets.length;
+        console.log("charged");
       }
     } else if (this.bulletCount > 0) {
+      console.log("cannot");
       // display message as to not able to recharge when have bullets
     }
   }
