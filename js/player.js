@@ -32,7 +32,9 @@ class Player {
       this.bullets[this.bullets.length-startCounting]._moveRight();
       this.bulletCount -=1;
     } else {
-      // display message as no bullet, please recharge
+      // this.ctx.fillStyle = "white";
+      // this.ctx.font = "20px Arial";
+      // this.ctx.fillText("You cannot shoot without bullets, press spacebar to recharge.", 500, 550);
     }
   }
 
@@ -44,9 +46,8 @@ class Player {
       }
     } else if (this.bulletCount > 0) {
       this.ctx.fillStyle = "white";
-      this.ctx.font = "30px Arial";
-      this.ctx.fillText("You still have bullets", 500, 580);
-      // display message as to not able to recharge when have bullets
+      this.ctx.font = "20px Arial";
+      this.ctx.fillText("You still have bullets.", 500, 550);
     }
     this.bulletCount = this.bullets.length;
   }

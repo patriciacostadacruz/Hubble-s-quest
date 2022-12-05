@@ -93,11 +93,8 @@ class Game {
       const npcIndex = this.npcs.indexOf(npc);
       if (this.player.x < npc.x + npc.width && this.player.x + this.player.width > npc.x && this.player.y < npc.y + npc.height && this.player.y + this.player.height > npc.y) {
         if (npc.role === "enemy") {
-          this.points -= 1;
           this.npcs.splice(npcIndex, 1);
-          if (this.points <= 0) {
-            this.gameOver();
-          }
+          this.gameOver();
         }
       }
      });
@@ -110,6 +107,7 @@ class Game {
             if (bullet.x < npc.x + npc.width && bullet.x + bullet.width > npc.x && bullet.y < npc.y + npc.height && bullet.y + bullet.height > npc.y) {
               if (npc.role === "enemy" && bullet.isShot) {
                 this.points += 1;
+                this.ctx.drawImage(npc.blood, npc.y, npc.y, npc.width, npc.height);
                 this.npcs.splice(npcIndex, 1);
                 this.player.bullets.splice(bulletIndex, 1);
                 this._levelIncrease();
@@ -125,12 +123,12 @@ class Game {
 
 
   _levelIncrease() {
-    if (this.points === 6 || this.points === 12) {
+    if (this.points === 4 || this.points === 8) {
       this.level += 1;
       this.ctx.fillStyle = "white";
       this.ctx.font = "40px Arial";
       this.ctx.fillText(`Next level: ${this.level}`, 400, 300); 
-      // make message show longer;
+      // make message show longer
     }
   }
 
@@ -150,7 +148,7 @@ class Game {
   }
 
   win() {
-    if (this.points === 18) {
+    if (this.points === 12) {
       canvas.classList.add('hidden');
       clearInterval(this.generateInterval);
       const winPage = document.getElementById("win-page");

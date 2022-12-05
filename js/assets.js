@@ -9,3 +9,6 @@ friend.src = "/images/grandma.png";
 
 const bullet = new Image();
 bullet.src = "/images/empanada.png";
+
+const blood = new Image();
+blood.src = "/images/blood.png";

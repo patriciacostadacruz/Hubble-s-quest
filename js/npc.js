@@ -6,6 +6,7 @@ class Npc {
     this.height = height;
     this.role = undefined;
     this.image = undefined;
+    this.blood = blood;
   }
 
   _assignRole() {

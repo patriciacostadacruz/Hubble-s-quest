@@ -28,6 +28,5 @@ window.onload = function () {
     canvas.classList.remove('hidden');
     const game = new Game(ctx);
     game.start();
-    // fix button not working / win page not disappearing
-  }
+  };
 }
