@@ -5,7 +5,13 @@ class Game {
     this.player = new Player(100, 360, 140, 180, this.ctx);
     this.npcs = [];
     this.level = 1;
+    this.winningPoints = 12;
     this.generateInterval = undefined;
+    this.gameMusic = gameMusic;
+    this.levelUp = levelUp;
+    this.pointMusic = point;
+    this.looserMusic = looserMusic;
+    this.winnerMusic = winnerMusic;
   }
 
   _assignControls() {
@@ -45,6 +51,7 @@ class Game {
     this.player._charge();
     this._generateNpcArr();
     this._update();
+    this.gameMusic.play();
   }
 
   _drawPlayer() {
@@ -107,10 +114,14 @@ class Game {
             if (bullet.x < npc.x + npc.width && bullet.x + bullet.width > npc.x && bullet.y < npc.y + npc.height && bullet.y + bullet.height > npc.y) {
               if (npc.role === "enemy" && bullet.isShot) {
                 this.points += 1;
+                this.pointMusic.play();
                 this.ctx.drawImage(npc.blood, npc.y, npc.y, npc.width, npc.height);
                 this.npcs.splice(npcIndex, 1);
                 this.player.bullets.splice(bulletIndex, 1);
                 this._levelIncrease();
+                if (this.points === this.winningPoints) {
+                  this.winnerMusic.play();
+                }
               } else if (npc.role === "friend" && bullet.isShot) {
                 this.npcs.splice(npcIndex, 1);
                 this.player.bullets.splice(bulletIndex, 1);
@@ -125,6 +136,7 @@ class Game {
   _levelIncrease() {
     if (this.points === 4 || this.points === 8) {
       this.level += 1;
+      this.levelUp.play();
       this.ctx.fillStyle = "white";
       this.ctx.font = "40px Arial";
       this.ctx.fillText(`Next level: ${this.level}`, 400, 300); 
@@ -145,10 +157,11 @@ class Game {
       const winPage = document.getElementById("win-page");
       winPage.style = "display: none";
       loosePage.style = "display: block";
+      this.looserMusic.play();
   }
 
   win() {
-    if (this.points === 12) {
+    if (this.points === this.winningPoints) {
       canvas.classList.add('hidden');
       clearInterval(this.generateInterval);
       const winPage = document.getElementById("win-page");

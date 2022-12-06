@@ -25,6 +25,7 @@ Minimum user stories:
 ## User stories Backlog
 
 - Collision between a bullet and an enemy displays a visual effect.
+- Sounds have been added to the game.
 - Level increases as the game goes.
 - User can see the level at the bottom right of the screen.
 

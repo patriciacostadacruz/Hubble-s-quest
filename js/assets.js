@@ -12,3 +12,19 @@ bullet.src = "/images/empanada.png";
 
 const blood = new Image();
 blood.src = "/images/blood.png";
+
+const gameMusic = new Audio("/musics/gamemusic.mp3");
+
+const shootingMusic = new Audio("/musics/shot.wav");
+
+const rechargeMusic = new Audio("/musics/recharge.wav");
+
+const actionImpossible = new Audio("/musics/cannot.wav");
+
+const levelUp = new Audio("/musics/levelup.wav");
+
+const point = new Audio("/musics/point.wav");
+
+const looserMusic = new Audio("/musics/gameover.wav");
+
+const winnerMusic = new Audio("/musics/win.wav");
