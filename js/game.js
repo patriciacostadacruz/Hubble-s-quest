@@ -12,24 +12,44 @@ class Game {
     this.pointMusic = point;
     this.looserMusic = looserMusic;
     this.winnerMusic = winnerMusic;
+    this.speed = 50;
+    this.gameMessage = " ";
+    this.collision = undefined;
+    this.collisionInterval = undefined;
   }
 
   _assignControls() {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case "ArrowRight":
-          this.player.shoot();
+          this.tryToShoot();
           break;
         case "Space":
-          this.player.recharge();
+          this.tryToRecharge();
           break;
         default:
           break;
       }
     });
   }
+  
+  tryToShoot() {
+    if (this.player.bulletCount > 0) {
+      this.player.shoot();
+    } else if (this.player.bulletCount == 0) {
+      this._updateMessage("You can't shoot without bullets, please recharge.");
+    }
+  }
 
-  _clean(){
+  tryToRecharge() {
+    if (this.player.bulletCount == 0) {
+      this.player.recharge();
+    } else if (this.player.bulletCount > 0) {
+      this._updateMessage(`You still have ${this.player.bulletCount} bullets.`);
+    }
+  }
+
+  _clean() {
     this.ctx.clearRect(0, 0, 1000, 600);
   }
 
@@ -42,7 +62,8 @@ class Game {
     this._drawBullet();
     this._checkBodyCollision();
     this._checkBulletCollision();
-    this.win();
+    this._drawMessage();
+    // this._drawCollisionEffect();
     window.requestAnimationFrame(() => this._update());
   }
 
@@ -61,7 +82,7 @@ class Game {
   _generateNpcArr() {
     this.generateInterval = setInterval(() => {
       if (this.npcs.length < 100) {
-        const newNpc = new Npc(1100, 370, 120, 160);
+        const newNpc = new Npc(1100, 370, 120, 160, this.speed);
         newNpc._assignRole();
         newNpc._assignImage();
         newNpc._moveLeft();
@@ -88,12 +109,46 @@ class Game {
     });
   }
 
+  _drawMessage() {
+    this.ctx.fillStyle = "red";
+    this.ctx.font = "25px Franklin Gothic Medium";
+    this.ctx.fillText(`${this.gameMessage}`, 100, 580);
+  }
+
+  _updateMessage(message) {
+    this.gameMessage = message;
+    setTimeout(() => {
+      this.gameMessage = " ";
+    }, 2000);
+  }
+
   _writeScoreAndBullets() {
     this.ctx.fillStyle = "white";
-    this.ctx.font = "20px Arial";
+    this.ctx.font = "20px Franklin Gothic Medium";
     this.ctx.fillText(`Points: ${this.points}`, 900, 50);
     this.ctx.fillText(`Bullets: ${this.player.bulletCount}`, 900, 80);   
   }
+
+  // _applyCollision() {
+    // let counter = 0;
+    // this.collisionInterval = setInterval(() => {
+      // if (counter < collisionSerie.length) {
+        // this.collision = collisionSerie[counter];
+        // counter++;
+      // }
+      // if (counter == collisionSerie.length) {
+        // this.collision = undefined;
+        // clearInterval(this.collisionInterval);
+        // counter = 0;
+      // }
+    // }, 40);
+  // }
+  // 
+  // _drawCollisionEffect() {
+    // if (this.collision) {
+      // this.ctx.drawImage(this.collision, npc.x, npx.y, npx.width, npc.width);
+    // }
+  // }
 
   _checkBodyCollision() {    
     this.npcs.forEach((npc) => {
@@ -115,12 +170,13 @@ class Game {
               if (npc.role === "enemy" && bullet.isShot) {
                 this.points += 1;
                 this.pointMusic.play();
-                this.ctx.drawImage(npc.blood, npc.y, npc.y, npc.width, npc.height);
+                // this._applyCollision();
                 this.npcs.splice(npcIndex, 1);
                 this.player.bullets.splice(bulletIndex, 1);
                 this._levelIncrease();
                 if (this.points === this.winningPoints) {
                   this.winnerMusic.play();
+                  this.win();
                 }
               } else if (npc.role === "friend" && bullet.isShot) {
                 this.npcs.splice(npcIndex, 1);
@@ -132,21 +188,23 @@ class Game {
         });
   }
 
-
   _levelIncrease() {
     if (this.points === 4 || this.points === 8) {
       this.level += 1;
       this.levelUp.play();
-      this.ctx.fillStyle = "white";
-      this.ctx.font = "40px Arial";
-      this.ctx.fillText(`Next level: ${this.level}`, 400, 300); 
-      // make message show longer
+      this._updateMessage(`Next level!!!`);
+    }
+    if (this.level == 2) {
+      this.speed = 35;
+    }
+    if (this.level == 3) {
+      this.speed = 25;
     }
   }
 
   _displayLevel() {
     this.ctx.fillStyle = "white";
-    this.ctx.font = "20px Arial";
+    this.ctx.font = "20px Franklin Gothic Medium";
     this.ctx.fillText(`Level: ${this.level}`, 900, 580);  
   }
 
@@ -161,11 +219,9 @@ class Game {
   }
 
   win() {
-    if (this.points === this.winningPoints) {
       canvas.classList.add('hidden');
       clearInterval(this.generateInterval);
       const winPage = document.getElementById("win-page");
       winPage.style = "display: block";
-    }
   }
 }

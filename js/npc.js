@@ -1,12 +1,12 @@
 class Npc {
-  constructor(x, y, width, height) {
+  constructor(x, y, width, height, speed = 50) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.role = undefined;
     this.image = undefined;
-    this.blood = blood;
+    this.speed = speed;
   }
 
   _assignRole() {
@@ -28,6 +28,6 @@ class Npc {
   _moveLeft() {
     setInterval(() => {
       this.x = this.x - 20;
-    }, 50); 
+    }, this.speed); 
   }
 }
