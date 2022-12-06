@@ -39,12 +39,19 @@
 #start-page p,
 #start-page ul {
   background-color: rgba(240, 178, 154, 0.719);
-  margin: 20px 100px;
+  margin: 30px 100px;
   color: rgb(240, 86, 69);
 }
 
 .controls {
   list-style: none;
+  display: flex;
+  justify-content: center;;
+}
+
+.controls img {
+  height: 30px;
+  margin: 0 15px;
 }
 
 article {
@@ -57,7 +64,7 @@ button {
   background-color: salmon;
   border: none;
   padding: 5px 30px;
-  margin-top: 60px;
+  margin-top: 70px;
   text-shadow: 2px 2px rgb(235, 226, 152);
   border-radius: 30px;
 }
