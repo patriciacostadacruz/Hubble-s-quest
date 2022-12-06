@@ -1,7 +1,6 @@
 # Game name
 
-<!-- When you finish, add a nice screenshot of your game -->
-<!--[<img src="./img/page.png">]()-->
+[<img src="/images/gameScreen.png">]
 
 ## Description
 
@@ -14,29 +13,35 @@ With Jerry in Barcelona, carteritas won't last long.
 
 Minimum user stories:
 
-- User can see a start screen with instructions and controls, and also an end game screen.
+- User can see a start screen with instructions and controls, a loosing screen and also an end game screen.
 - User can see a board with player and enemies/friends appearing from the right and a score and bullets left.
 - User can shoot enemies to kill them and win points.
 - User can recharge bullets.
 - User can loose if a friendly NPC is killed of if a non-friendly NPC collisions with him.
-- User can see the points at the top right of the playing screen.
-- User can see the bullet count at the top right of the screen, under the point counter.
 
 ## User stories Backlog
 
-- Collision between a bullet and an enemy displays a visual effect.
-- Sounds have been added to the game.
+- Collision between a bullet and an enemy plays a sound effect.
+- Trying to shoot with no bullet plays a sound effect.
+- Trying to recharge with bullets left also plays a sound effect.
+- Messages are displayed when user levels up, recharges with bullets or shoots with no bullets.
 - Level increases as the game goes.
-- User can see the level at the bottom right of the screen.
+- User can see level showing at the bottom right of the screen.
 
 ## File structure
 
-- <code>game.js</code>: contains all the elements for the game to work. Methods: start(), \_update()
+- <code>index.html</code>: contains the game basic HTML structure
+- <code>game.js</code>: contains all the elements for the game to work.
 - <code>scripts.js</code>: contains all the DOM/canvas manipulation code to start the game
+- <code>assets.js</code>: contains all the media needed for the game (images, sounds, etc)
+- <code>player.js</code>: contains the player class and methods
+- <code>npc.js</code>: contains the npcs class and methods
+- <code>bullet.js</code>: contains the bullet class and methods
+- <code>images folder</code>: contains all the game images
+- <code>musics folder</code>: contains all the game sound effects and music
+- <code>style.css</code>: contains tthe game visual design elements
 
 ## Useful links
 
-<!-- When you finish, add these links and commit -->
-
-- [Presentation slides]()
-- [Deployed game]()
+- [Presentation slides](https://slides.com/d/i2gY3oE/live) 
+- [Deployed game](https://patriciacostadacruz.github.io/Jerry-s-rules/) 
