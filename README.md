@@ -1,13 +1,13 @@
-# Game name
+# Jerry's rules
 
-[<img src="/images/gameScreen.png">]
+<img src="/images/gameScreen.png">
 
 ## Description
 
 After years of fighting crime, this time you'll find Jerry in our lovely Barcelona. He only has one goal: ban robberies and allow Barcelona to find its tranquility once again.
 Jerry once was this mellow and calm husband we all knew in Rick & Morty, but after his divorce with Bet, Jerry found his true vocation: saving the world.
 He has been traveling around the globe and didn't leave a city until crime was completely eradicated.
-With Jerry in Barcelona, carteritas won't last long.
+With Jerry in Barcelona, carteritas (robbers) won't last long.
 
 ## User stories MVP
 
@@ -26,6 +26,7 @@ Minimum user stories:
 - Trying to recharge with bullets left also plays a sound effect.
 - Messages are displayed when user levels up, recharges with bullets or shoots with no bullets.
 - Level increases as the game goes.
+- NPCs go faster as level goes up.
 - User can see level showing at the bottom right of the screen.
 
 ## File structure
