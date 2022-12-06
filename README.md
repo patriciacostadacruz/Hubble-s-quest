@@ -39,7 +39,7 @@ Minimum user stories:
 - <code>bullet.js</code>: contains the bullet class and methods
 - <code>images folder</code>: contains all the game images
 - <code>musics folder</code>: contains all the game sound effects and music
-- <code>style.css</code>: contains tthe game visual design elements
+- <code>style.css</code>: contains the game visual design elements
 
 ## Useful links
 
