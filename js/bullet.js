@@ -10,7 +10,7 @@ class Bullet {
 
   _moveRight()  {
     setInterval(() => {
-        this.x = this.x + 14;
+        this.x = this.x + 20;
     }, 45);
   }
 }

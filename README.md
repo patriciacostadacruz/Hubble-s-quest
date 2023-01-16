@@ -1,27 +1,23 @@
 # Jerry's rules
 
-<img src="/images/gameScreen.png">
+<img src="/images/game-screen.png">
 
 ## Description
 
-After years of fighting crime, this time you'll find Jerry in our lovely Barcelona. He only has one goal: ban robberies and allow Barcelona to find its tranquility once again.
-Jerry once was this mellow and calm husband we all knew in Rick & Morty, but after his divorce with Bet, Jerry found his true vocation: saving the world.
-He has been traveling around the globe and didn't leave a city until crime was completely eradicated.
-With Jerry in Barcelona, carteritas (robbers) won't last long.
+After Hubble telescope was launched in 1990, alien populations have started being attacked by some alien monster. Aspart of the Independant Wizards Mission (IWM), you player is charged with a mission: go to planet BetaX-2 and kill the enemies to allow friendly and nice aliens to live in peace.
 
 ## User stories MVP
 
 Minimum user stories:
 
 - User can see a start screen with instructions and controls, a loosing screen and also an end game screen.
-- User can see a board with player and enemies/friends appearing from the right and a score and bullets left.
+- User can see a board with player and enemies/friends appearing from the right and a score and bullets at the left.
 - User can shoot enemies to kill them and win points.
 - User can recharge bullets.
 - User can loose if a friendly NPC is killed of if a non-friendly NPC collisions with him.
 
 ## User stories Backlog
 
-- Collision between a bullet and an enemy plays a sound effect.
 - Trying to shoot with no bullet plays a sound effect.
 - Trying to recharge with bullets left also plays a sound effect.
 - Messages are displayed when user levels up, recharges with bullets or shoots with no bullets.
@@ -44,5 +40,5 @@ Minimum user stories:
 
 ## Useful links
 
-- [Presentation slides](https://slides.com/d/i2gY3oE/live) 
-- [Deployed game](https://patriciacostadacruz.github.io/Jerry-s-rules/) 
+- [Presentation slides](https://slides.com/d/i2gY3oE/live)
+- [Deployed game](https://patriciacostadacruz.github.io/Jerry-s-rules/)

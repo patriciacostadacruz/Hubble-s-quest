@@ -12,6 +12,7 @@ class Game {
     this.pointMusic = point;
     this.looserMusic = looserMusic;
     this.winnerMusic = winnerMusic;
+    this.actionImpossible = actionImpossible;
     this.speed = 50;
     this.gameMessage = " ";
     this.collision = undefined;
@@ -38,6 +39,7 @@ class Game {
       this.player.shoot();
     } else if (this.player.bulletCount == 0) {
       this._updateMessage("You can't shoot without bullets, please recharge.");
+      this.actionImpossible.play();
     }
   }
 
@@ -46,6 +48,7 @@ class Game {
       this.player.recharge();
     } else if (this.player.bulletCount > 0) {
       this._updateMessage(`You still have ${this.player.bulletCount} bullets.`);
+      this.actionImpossible.play();
     }
   }
 
@@ -71,7 +74,6 @@ class Game {
     this.player._charge();
     this._generateNpcArr();
     this._update();
-    this.gameMusic.play();
   }
 
   _drawPlayer() {
@@ -128,27 +130,6 @@ class Game {
     this.ctx.fillText(`Bullets: ${this.player.bulletCount}`, 60, 100);   
   }
 
-  // _applyCollision() {
-    // let counter = 0;
-    // this.collisionInterval = setInterval(() => {
-      // if (counter < collisionSerie.length) {
-        // this.collision = collisionSerie[counter];
-        // counter++;
-      // }
-      // if (counter == collisionSerie.length) {
-        // this.collision = undefined;
-        // clearInterval(this.collisionInterval);
-        // counter = 0;
-      // }
-    // }, 40);
-  // }
-  // 
-  // _drawCollisionEffect() {
-    // if (this.collision) {
-      // this.ctx.drawImage(this.collision, npc.x, npx.y, npx.width, npc.width);
-    // }
-  // }
-
   _checkBodyCollision() {    
     this.npcs.forEach((npc) => {
       const npcIndex = this.npcs.indexOf(npc);
@@ -169,7 +150,6 @@ class Game {
               if (npc.role === "enemy" && bullet.isShot) {
                 this.points += 1;
                 this.pointMusic.play();
-                // this._applyCollision();
                 this.npcs.splice(npcIndex, 1);
                 this.player.bullets.splice(bulletIndex, 1);
                 this._levelIncrease();

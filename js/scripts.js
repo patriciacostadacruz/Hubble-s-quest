@@ -7,6 +7,7 @@ window.onload = function () {
   const playAgainButton = document.getElementById("play-again");
   const winPage = document.getElementById("win-page");
   const loosePage = document.getElementById("lose-page");
+  gameMusic.play();
 
   startButton.onclick = function () {
     startPage.style = "display: none";
