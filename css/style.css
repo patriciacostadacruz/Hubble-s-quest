@@ -4,7 +4,8 @@
 }
 
 body {
-  background-color: lightblue;
+  background-color: black;
+  font-family:'Courier New', Courier, monospace;
 }
 
 #start-page,
@@ -12,45 +13,49 @@ body {
 #lose-page {
   height: 600px;
   width: 1000px;
-  background-color: rgb(240, 178, 154);
+  background-color: black;
   color: white;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  border: none;
-  margin-top: 30px;
+  margin: auto;
 }
 
 #start-page {
-  background-image: url("../images/barcelona.png");
-  background-size: contain;
+  background-image: url("../images/space-beg.png");
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
   font-size: 1.25em;
 }
 
 #start-page h1 {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 2.5em;
-  text-shadow: 3px 3px salmon;
-  margin: 0 280px 45px 300px;
-  border-radius: 40px;
+  text-shadow: 6px 6px 8px purple;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+#start-page p {
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
 #start-page p,
 #start-page ul {
-  background-color: rgba(240, 178, 154, 0.719);
-  margin: 30px 100px;
-  color: rgb(240, 86, 69);
+  background-color: rgba(128, 0, 128, 0.74);
+  color: white;
+  text-shadow: 3px 3px 5px black;
+  border-radius: 20px;
+  margin-right:  80px;
+  margin-left: 80px;
+  padding: 10px;
+  text-align: justify;
 }
 
 .controls {
   list-style: none;
   display: flex;
-  justify-content: center;;
+  justify-content: center;
 }
 
 .controls img {
@@ -59,41 +64,60 @@ body {
 }
 
 article {
-  margin-top: 130px;
+  margin-top: 50px;
 }
 
 button {
   color: white;
   font-size: 1.75em;
-  background-color: salmon;
+  background-color: purple;
   border: none;
   padding: 5px 30px;
   margin-top: 70px;
-  text-shadow: 2px 2px rgb(235, 226, 152);
+  text-shadow: 4px 4px 6px black;
   border-radius: 30px;
 }
 
+@keyframes pulse {
+  25% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(.9);
+  }
+}
+
 button:hover {
-  background-color: rgb(243, 81, 63);
   font-weight: bolder;
-  transform: scale(1.5);
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 #lose-page {
   display: none;
+  background-image: url("../images/space.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
 }
 
 #win-page {
   display: none;
+  background-image: url("../images/space.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
 }
 
 #win-page h1 {
-  text-shadow: 2px 2px salmon;
+  text-shadow: 4px 4px 8px black;
   padding: 100px;
 }
 
 #lose-page h1 {
-  text-shadow: 2px 2px salmon;
+  text-shadow: 4px 4px 8px black;
   padding: 200px;
 }
 
@@ -106,13 +130,10 @@ canvas {
   border: none;
   display: block;
   margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  background-image: url("../images/barcelona.png");
-  background-size: contain;
+  background-image: url("../images/space.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
-  background-color: rgb(240, 178, 154);;
+  background-color: black;
 }
 
 /* Auxiliar classes */

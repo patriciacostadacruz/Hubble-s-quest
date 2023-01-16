@@ -2,7 +2,7 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(100, 360, 140, 180, this.ctx);
+    this.player = new Player(100, 310, 140, 180, this.ctx);
     this.npcs = [];
     this.level = 1;
     this.winningPoints = 12;
@@ -82,7 +82,7 @@ class Game {
   _generateNpcArr() {
     this.generateInterval = setInterval(() => {
       if (this.npcs.length < 100) {
-        const newNpc = new Npc(1100, 370, 120, 160, this.speed);
+        const newNpc = new Npc(1100, 320, 120, 160, this.speed);
         newNpc._assignRole();
         newNpc._assignImage();
         newNpc._moveLeft();
@@ -110,9 +110,9 @@ class Game {
   }
 
   _drawMessage() {
-    this.ctx.fillStyle = "red";
-    this.ctx.font = "25px Franklin Gothic Medium";
-    this.ctx.fillText(`${this.gameMessage}`, 100, 580);
+    this.ctx.fillStyle = "white";
+    this.ctx.font = "bold 25px Courier New";
+    this.ctx.fillText(`${this.gameMessage}`, 300, 550);
   }
 
   _updateMessage(message) {
@@ -124,9 +124,9 @@ class Game {
 
   _writeScoreAndBullets() {
     this.ctx.fillStyle = "white";
-    this.ctx.font = "20px Franklin Gothic Medium";
-    this.ctx.fillText(`Points: ${this.points}`, 900, 50);
-    this.ctx.fillText(`Bullets: ${this.player.bulletCount}`, 900, 80);   
+    this.ctx.font = "bold 20px Courier New";
+    this.ctx.fillText(`Points: ${this.points}`, 60, 70);
+    this.ctx.fillText(`Bullets: ${this.player.bulletCount}`, 60, 100);   
   }
 
   // _applyCollision() {
@@ -204,8 +204,8 @@ class Game {
 
   _displayLevel() {
     this.ctx.fillStyle = "white";
-    this.ctx.font = "20px Franklin Gothic Medium";
-    this.ctx.fillText(`Level: ${this.level}`, 900, 580);  
+    this.ctx.font = "bold 20px Courier New";
+    this.ctx.fillText(`Level: ${this.level}`, 60, 550);  
   }
 
   gameOver() {
