@@ -2,7 +2,7 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(100, 310, 140, 180, this.ctx);
+    this.player = new Player(100, 280, 140, 210, this.ctx);
     this.npcs = [];
     this.level = 1;
     this.winningPoints = 12;
@@ -63,7 +63,6 @@ class Game {
     this._checkBodyCollision();
     this._checkBulletCollision();
     this._drawMessage();
-    // this._drawCollisionEffect();
     window.requestAnimationFrame(() => this._update());
   }
 
@@ -82,7 +81,7 @@ class Game {
   _generateNpcArr() {
     this.generateInterval = setInterval(() => {
       if (this.npcs.length < 100) {
-        const newNpc = new Npc(1100, 320, 120, 160, this.speed);
+        const newNpc = new Npc(1100, 300, 140, 190, this.speed);
         newNpc._assignRole();
         newNpc._assignImage();
         newNpc._moveLeft();
