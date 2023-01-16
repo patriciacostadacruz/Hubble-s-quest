@@ -1,4 +1,4 @@
-# Jerry's rules
+# Hubble's quest
 
 <img src="/images/game-screen.png">
 
@@ -40,5 +40,5 @@ Minimum user stories:
 
 ## Useful links
 
-- [Presentation slides](https://slides.com/d/i2gY3oE/live)
-- [Deployed game](https://patriciacostadacruz.github.io/Jerry-s-rules/)
+- [Presentation slides](TBD)
+- [Deployed game](https://github.com/patriciacostadacruz/Hubble-s-quest/settings/pages)
