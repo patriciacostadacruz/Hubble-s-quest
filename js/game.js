@@ -3,6 +3,7 @@ class Game {
     this.ctx = context;
     this.points = 0;
     this.player = new Player(100, 280, 140, 210, this.ctx);
+    this.ovnis = [];
     this.npcs = [];
     this.level = 1;
     this.winningPoints = 12;
@@ -58,6 +59,7 @@ class Game {
 
   _update() {    
     this._clean();
+    this._drawOvnis();
     this._writeScoreAndBullets();
     this._displayLevel();
     this._drawNpcs();
@@ -73,8 +75,26 @@ class Game {
     this._assignControls();
     this.player._charge();
     this._generateNpcArr();
+    this._generateOvnisArr();
     this._update();
   }
+   
+  _generateOvnisArr() {
+    setInterval(() => {
+      if (this.ovnis.length < 100) {
+        const axisY = Math.floor(Math.random() * 400);
+        const newOvni = new Ovni(1100, axisY, 90, 90, this.speed);
+        newOvni._moveLeft();
+        this.ovnis.push(newOvni);
+      }
+    }, 3000);
+  } 
+
+  _drawOvnis() {
+    this.ovnis.forEach((ovni) => {
+      this.ctx.drawImage(ovni.image, ovni.x, ovni.y, ovni.width, ovni.height);
+      });
+  }  
 
   _drawPlayer() {
     this.ctx.drawImage(this.player.image, this.player.x, this.player.y, this.player.width, this.player.height);

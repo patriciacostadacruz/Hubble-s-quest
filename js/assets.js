@@ -1,3 +1,6 @@
+const ovni = new Image();
+ovni.src = "./images/ovni.png";
+
 const jerry = new Image();
 jerry.src = "./images/player.png";
 
