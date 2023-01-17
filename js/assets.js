@@ -13,7 +13,7 @@ friend.src = "./images/friendly-alien.png";
 const bullet = new Image();
 bullet.src = "./images/empanada.png";
 
-const gameMusic = new Audio("./musics/gamemusic.mp3");
+const gameMusic = new Audio("./musics/gamemusic.wav");
 
 const shootingMusic = new Audio("./musics/space-gunshot.wav");
 
