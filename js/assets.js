@@ -15,7 +15,7 @@ bullet.src = "./images/empanada.png";
 
 const gameMusic = new Audio("./musics/gamemusic.mp3");
 
-const shootingMusic = new Audio("./musics/shot.wav");
+const shootingMusic = new Audio("./musics/space-gunshot.wav");
 
 const rechargeMusic = new Audio("./musics/recharge.wav");
 
