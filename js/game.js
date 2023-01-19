@@ -139,7 +139,7 @@ class Game {
   _drawMessage() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 25px Courier New";
-    this.ctx.fillText(`${this.gameMessage}`, 300, 550);
+    this.ctx.fillText(`${this.gameMessage}`, 250, 550);
   }
 
   _updateMessage(message) {
@@ -149,7 +149,17 @@ class Game {
     }, 2000);
   }
 
+  _drawScoreAndBulletsBox() {
+    this.ctx.strokeStyle = "red";
+    this.ctx.fillStyle = "red";
+    this.ctx.beginPath();
+    this.ctx.roundRect(45, 40, 150, 80, 10);
+    this.ctx.stroke();
+    this.ctx.fill();
+  }
+
   _writeScoreAndBullets() {
+    this._drawScoreAndBulletsBox();
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 20px Courier New";
     this.ctx.fillText(`Points: ${this.points}`, 60, 70);
@@ -217,7 +227,17 @@ class Game {
     }
   }
 
+  _drawLevelBox() {
+    this.ctx.strokeStyle = "red";
+    this.ctx.fillStyle = "red";
+    this.ctx.beginPath();
+    this.ctx.roundRect(45, 520, 130, 50, 10);
+    this.ctx.stroke();
+    this.ctx.fill();
+  }
+
   _displayLevel() {
+    this._drawLevelBox();
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 20px Courier New";
     this.ctx.fillText(`Level: ${this.level}`, 60, 550);  
