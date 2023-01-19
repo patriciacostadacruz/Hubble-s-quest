@@ -17,7 +17,7 @@ class Player {
 
   _charge() {
     for (let i=0; i < this.bulletCapacity; i++) {
-      const newBullet = new Bullet(150, this.y + 50, 35, 65);
+      const newBullet = new Bullet(270, this.y + 50, 35, 65);
       this.bullets.push(newBullet);
       this.bulletCount = this.bullets.length;
     }
@@ -38,7 +38,7 @@ class Player {
 
   recharge() {
     for (let i=0; i<this.bulletCapacity; i++) {
-      const newBullet = new Bullet(150, this.y + 50, 50, 30);
+      const newBullet = new Bullet(270, this.y + 50, 50, 30);
       this.rechargeMusic.play();
       this.bullets.push(newBullet);
     }

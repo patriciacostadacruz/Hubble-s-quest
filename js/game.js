@@ -2,7 +2,7 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(45, 320, 140, 210, this.ctx);
+    this.player = new Player(170, 320, 140, 210, this.ctx);
     this.ovnis = [];
     this.npcs = [];
     this.level = 1;
@@ -14,7 +14,7 @@ class Game {
     this.looserMusic = looserMusic;
     this.winnerMusic = winnerMusic;
     this.actionImpossible = actionImpossible;
-    this.speed = 60;
+    this.speed = 25;
     this.gameMessage = " ";
     this.collision = undefined;
     this.collisionInterval = undefined;
@@ -89,7 +89,7 @@ class Game {
     setInterval(() => {
       if (this.ovnis.length < 100) {
         const axisY = Math.floor(Math.random() * 450);
-        const newOvni = new Ovni(-100, axisY, 90, 90, this.speed);
+        const newOvni = new Ovni(-100, axisY, 90, 90, this.speed + 20);
         newOvni._moveRight();
         this.ovnis.push(newOvni);
       }
@@ -139,7 +139,7 @@ class Game {
   _drawMessage() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 25px Courier New";
-    this.ctx.fillText(`${this.gameMessage}`, 250, 580);
+    this.ctx.fillText(`${this.gameMessage}`, 150, 570);
   }
 
   _updateMessage(message) {
@@ -153,7 +153,7 @@ class Game {
     this.ctx.strokeStyle = "purple";
     this.ctx.fillStyle = "purple";
     this.ctx.beginPath();
-    this.ctx.roundRect(50, 10, 150, 80, 10);
+    this.ctx.roundRect(830, 25, 150, 80, 10);
     this.ctx.stroke();
     this.ctx.fill();
   }
@@ -162,8 +162,8 @@ class Game {
     this._drawScoreAndBulletsBox();
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 20px Courier New";
-    this.ctx.fillText(`POINTS: ${this.points}`, 65, 40);
-    this.ctx.fillText(`BULLETS: ${this.player.bulletCount}`, 65, 75);   
+    this.ctx.fillText(`POINTS: ${this.points}`, 850, 55);
+    this.ctx.fillText(`BULLETS: ${this.player.bulletCount}`, 850, 85);   
   }
 
   _checkBodyCollision() {    
@@ -210,20 +210,20 @@ class Game {
       this._updateMessage(`NEXT LEVEL`);
     }
     if (this.level == 2) {
-      this.speed = 55;
-      this.movSpeed = 5;
+      this.speed = 20;
+      this.movSpeed = 4.5;
     }
     if (this.level == 3) {
-      this.speed = 50;
+      this.speed = 17;
       this.movSpeed = 5.5;
     }
     if (this.level == 4) {
-      this.speed = 45;
-      this.movSpeed = 6;
+      this.speed = 14;
+      this.movSpeed = 6.5;
     }
     if (this.level == 5) {
-      this.speed = 40;
-      this.movSpeed = 6.5;
+      this.speed = 11;
+      this.movSpeed = 7.5;
     }
   }
 
@@ -231,7 +231,7 @@ class Game {
     this.ctx.strokeStyle = "purple";
     this.ctx.fillStyle = "purple";
     this.ctx.beginPath();
-    this.ctx.roundRect(50, 540, 130, 50, 10);
+    this.ctx.roundRect(850, 530, 130, 50, 10);
     this.ctx.stroke();
     this.ctx.fill();
   }
@@ -240,7 +240,7 @@ class Game {
     this._drawLevelBox();
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 20px Courier New";
-    this.ctx.fillText(`LEVEL: ${this.level}`, 65, 570);  
+    this.ctx.fillText(`LEVEL: ${this.level}`, 870, 560);  
   }
 
   /* parallax effect */

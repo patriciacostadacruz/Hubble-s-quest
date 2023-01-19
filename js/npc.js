@@ -1,5 +1,5 @@
 class Npc {
-  constructor(x, y, width, height, speed = 50) {
+  constructor(x, y, width, height, speed = 25) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -10,7 +10,7 @@ class Npc {
   }
 
   _assignRole() {
-    if (Math.floor(Math.random() * 5) > 2) {
+    if (Math.floor(Math.random() * 3) > 1) {
       this.role = "enemy";
     } else {
       this.role = "friend";
@@ -27,7 +27,7 @@ class Npc {
 
   _moveLeft() {
     setInterval(() => {
-      this.x = this.x - 20;
+      this.x = this.x - 10;
     }, this.speed); 
   }
 }
