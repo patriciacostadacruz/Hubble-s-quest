@@ -17,7 +17,7 @@ class Player {
 
   _charge() {
     for (let i=0; i < this.bulletCapacity; i++) {
-      const newBullet = new Bullet(280, this.y + 70, 50, 30);
+      const newBullet = new Bullet(280, this.y + 70, 35, 65);
       this.bullets.push(newBullet);
       this.bulletCount = this.bullets.length;
     }

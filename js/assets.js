@@ -11,7 +11,7 @@ const friend = new Image();
 friend.src = "./images/friendly-alien.png";
 
 const bullet = new Image();
-bullet.src = "./images/empanada.png";
+bullet.src = "./images/pickle-rick.png";
 
 const gameMusic = new Audio("./musics/gamemusic.wav");
 
