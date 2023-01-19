@@ -42,4 +42,4 @@ Minimum user stories:
 ## Useful links
 
 - [Presentation slides](https://slides.com/patriciacostadacruz/deck)
-- [Deployed game](https://github.com/patriciacostadacruz/Hubble-s-quest/settings/pages)
+- [Deployed game](https://patriciacostadacruz.github.io/Hubble-s-quest/)
