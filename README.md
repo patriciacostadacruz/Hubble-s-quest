@@ -23,7 +23,7 @@ Minimum user stories:
 - Messages are displayed when user levels up, recharges with bullets or shoots with no bullets.
 - Level increases as the game goes.
 - NPCs go faster as level goes up.
-- User can see level showing at the bottom right of the screen.
+- User can see level showing at the bottom left of the screen.
 
 ## File structure
 
