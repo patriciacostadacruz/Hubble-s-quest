@@ -24,7 +24,7 @@ body {
 }
 
 #start-page {
-  background-image: url("../images/space-beg.png");
+  background-image: url("../images/space-img.png");
   background-size: cover;
   background-repeat: no-repeat;
   font-size: 1.25em;
@@ -97,7 +97,7 @@ button:hover {
 
 #lose-page {
   display: none;
-  background-image: url("../images/space.jpg");
+  background-image: url("../images/space-img.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-color: black;
@@ -105,7 +105,7 @@ button:hover {
 
 #win-page {
   display: none;
-  background-image: url("../images/space.jpg");
+  background-image: url("../images/space-img.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-color: black;
@@ -130,9 +130,6 @@ canvas {
   border: none;
   display: block;
   margin: 0 auto;
-  background-image: url("../images/space.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
   background-color: black;
 }
 

@@ -8,9 +8,9 @@ class Ovni {
     this.speed = speed;
   }
 
-  _moveLeft() {
+  _moveRight() {
     setInterval(() => {
-      this.x = this.x - 10;
+      this.x = this.x + 10;
     }, this.speed);
   }
 

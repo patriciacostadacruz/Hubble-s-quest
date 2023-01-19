@@ -2,11 +2,11 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(100, 280, 140, 210, this.ctx);
+    this.player = new Player(180, 310, 140, 210, this.ctx);
     this.ovnis = [];
     this.npcs = [];
     this.level = 1;
-    this.winningPoints = 12;
+    this.winningPoints = 18;
     this.generateInterval = undefined;
     this.gameMusic = gameMusic;
     this.levelUp = levelUp;
@@ -14,10 +14,14 @@ class Game {
     this.looserMusic = looserMusic;
     this.winnerMusic = winnerMusic;
     this.actionImpossible = actionImpossible;
-    this.speed = 50;
+    this.speed = 60;
     this.gameMessage = " ";
     this.collision = undefined;
     this.collisionInterval = undefined;
+    this.background = document.getElementById("parallax");
+    this.x = 0;
+    this.x2 = 1697;
+    this.movSpeed = 3.5;
   }
 
   _assignControls() {
@@ -59,6 +63,7 @@ class Game {
 
   _update() {    
     this._clean();
+    this._animate();
     this._drawOvnis();
     this._writeScoreAndBullets();
     this._displayLevel();
@@ -77,17 +82,18 @@ class Game {
     this._generateNpcArr();
     this._generateOvnisArr();
     this._update();
+    this.gameMusic.play();
   }
    
   _generateOvnisArr() {
     setInterval(() => {
       if (this.ovnis.length < 100) {
         const axisY = Math.floor(Math.random() * 400);
-        const newOvni = new Ovni(1100, axisY, 90, 90, this.speed);
-        newOvni._moveLeft();
+        const newOvni = new Ovni(-100, axisY, 90, 90, this.speed);
+        newOvni._moveRight();
         this.ovnis.push(newOvni);
       }
-    }, 3000);
+    }, 3700);
   } 
 
   _drawOvnis() {
@@ -103,13 +109,13 @@ class Game {
   _generateNpcArr() {
     this.generateInterval = setInterval(() => {
       if (this.npcs.length < 100) {
-        const newNpc = new Npc(1100, 300, 140, 190, this.speed);
+        const newNpc = new Npc(1100, 330, 150, 200, this.speed);
         newNpc._assignRole();
         newNpc._assignImage();
         newNpc._moveLeft();
         this.npcs.push(newNpc);
       }
-    }, 2000);
+    }, 3000);
   } 
 
   _drawNpcs() {
@@ -188,16 +194,26 @@ class Game {
   }
 
   _levelIncrease() {
-    if (this.points === 4 || this.points === 8) {
+    if (this.points % 3 === 0) {
       this.level += 1;
       this.levelUp.play();
       this._updateMessage(`Next level!!!`);
     }
     if (this.level == 2) {
-      this.speed = 35;
+      this.speed = 55;
+      this.movSpeed = 5;
     }
     if (this.level == 3) {
-      this.speed = 25;
+      this.speed = 50;
+      this.movSpeed = 5.5;
+    }
+    if (this.level == 4) {
+      this.speed = 45;
+      this.movSpeed = 6;
+    }
+    if (this.level == 5) {
+      this.speed = 40;
+      this.movSpeed = 6.5;
     }
   }
 
@@ -205,6 +221,23 @@ class Game {
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 20px Courier New";
     this.ctx.fillText(`Level: ${this.level}`, 60, 550);  
+  }
+
+  /* parallax effect */
+  _animate() {
+    this._clean();
+    if (this.x < -1697) {
+      this.x = 1697 - this.movSpeed + this.x2;
+    } else {
+      this.x -= this.movSpeed;
+    }
+    if (this.x2 < -1697) {
+      this.x2 = 1697 - this.movSpeed + this.x;
+    } else {
+      this.x2 -= this.movSpeed;
+    }
+    this.ctx.drawImage(this.background, this.x, 0);
+    this.ctx.drawImage(this.background, this.x2, 0);
   }
 
   gameOver() {
