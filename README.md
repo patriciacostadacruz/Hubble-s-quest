@@ -33,6 +33,7 @@ Minimum user stories:
 - <code>assets.js</code>: contains all the media needed for the game (images, sounds, etc)
 - <code>player.js</code>: contains the player class and methods
 - <code>npc.js</code>: contains the npcs class and methods
+- <code>ovni.js</code>: contains the ovni class
 - <code>bullet.js</code>: contains the bullet class and methods
 - <code>images folder</code>: contains all the game images
 - <code>musics folder</code>: contains all the game sound effects and music
@@ -40,5 +41,5 @@ Minimum user stories:
 
 ## Useful links
 
-- [Presentation slides](TBD)
+- [Presentation slides](https://slides.com/patriciacostadacruz/deck)
 - [Deployed game](https://github.com/patriciacostadacruz/Hubble-s-quest/settings/pages)
