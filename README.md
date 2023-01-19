@@ -1,6 +1,6 @@
 # Hubble's quest
 
-<img src="/images/game.screen.png">
+<img src="/images/game-screen.png">
 
 ## Description
 

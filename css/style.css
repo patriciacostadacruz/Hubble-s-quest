@@ -137,8 +137,10 @@ canvas {
   margin: 0 auto;
   background-color: black;
   border-radius: 30px;
-  border: 3px solid rgba(255, 68, 0, 0.486);
-  box-shadow: 0px 0px 30px orangered;
+    border: 3px solid rgb(70, 4, 70);
+      box-shadow: 0px 0px 30px purple;
+  /* border: 3px solid rgba(255, 68, 0, 0.486);
+  box-shadow: 0px 0px 30px orangered; */
 }
 
 /* Auxiliar classes */

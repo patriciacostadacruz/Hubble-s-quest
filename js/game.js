@@ -2,7 +2,7 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.points = 0;
-    this.player = new Player(180, 310, 140, 210, this.ctx);
+    this.player = new Player(45, 320, 140, 210, this.ctx);
     this.ovnis = [];
     this.npcs = [];
     this.level = 1;
@@ -20,7 +20,7 @@ class Game {
     this.collisionInterval = undefined;
     this.background = document.getElementById("parallax");
     this.x = 0;
-    this.x2 = 1697;
+    this.x2 = 1200;
     this.movSpeed = 3.5;
   }
 
@@ -88,7 +88,7 @@ class Game {
   _generateOvnisArr() {
     setInterval(() => {
       if (this.ovnis.length < 100) {
-        const axisY = Math.floor(Math.random() * 400);
+        const axisY = Math.floor(Math.random() * 450);
         const newOvni = new Ovni(-100, axisY, 90, 90, this.speed);
         newOvni._moveRight();
         this.ovnis.push(newOvni);
@@ -139,7 +139,7 @@ class Game {
   _drawMessage() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 25px Courier New";
-    this.ctx.fillText(`${this.gameMessage}`, 250, 550);
+    this.ctx.fillText(`${this.gameMessage}`, 250, 580);
   }
 
   _updateMessage(message) {
@@ -150,10 +150,10 @@ class Game {
   }
 
   _drawScoreAndBulletsBox() {
-    this.ctx.strokeStyle = "red";
-    this.ctx.fillStyle = "red";
+    this.ctx.strokeStyle = "purple";
+    this.ctx.fillStyle = "purple";
     this.ctx.beginPath();
-    this.ctx.roundRect(45, 40, 150, 80, 10);
+    this.ctx.roundRect(50, 10, 150, 80, 10);
     this.ctx.stroke();
     this.ctx.fill();
   }
@@ -162,8 +162,8 @@ class Game {
     this._drawScoreAndBulletsBox();
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 20px Courier New";
-    this.ctx.fillText(`Points: ${this.points}`, 60, 70);
-    this.ctx.fillText(`Bullets: ${this.player.bulletCount}`, 60, 100);   
+    this.ctx.fillText(`POINTS: ${this.points}`, 65, 40);
+    this.ctx.fillText(`BULLETS: ${this.player.bulletCount}`, 65, 75);   
   }
 
   _checkBodyCollision() {    
@@ -207,7 +207,7 @@ class Game {
     if (this.points % 3 === 0) {
       this.level += 1;
       this.levelUp.play();
-      this._updateMessage(`Next level!!!`);
+      this._updateMessage(`NEXT LEVEL`);
     }
     if (this.level == 2) {
       this.speed = 55;
@@ -228,10 +228,10 @@ class Game {
   }
 
   _drawLevelBox() {
-    this.ctx.strokeStyle = "red";
-    this.ctx.fillStyle = "red";
+    this.ctx.strokeStyle = "purple";
+    this.ctx.fillStyle = "purple";
     this.ctx.beginPath();
-    this.ctx.roundRect(45, 520, 130, 50, 10);
+    this.ctx.roundRect(50, 540, 130, 50, 10);
     this.ctx.stroke();
     this.ctx.fill();
   }
@@ -240,19 +240,19 @@ class Game {
     this._drawLevelBox();
     this.ctx.fillStyle = "white";
     this.ctx.font = "bold 20px Courier New";
-    this.ctx.fillText(`Level: ${this.level}`, 60, 550);  
+    this.ctx.fillText(`LEVEL: ${this.level}`, 65, 570);  
   }
 
   /* parallax effect */
   _animate() {
     this._clean();
-    if (this.x < -1697) {
-      this.x = 1697 - this.movSpeed + this.x2;
+    if (this.x < -1200) {
+      this.x = 1200 - this.movSpeed + this.x2;
     } else {
       this.x -= this.movSpeed;
     }
-    if (this.x2 < -1697) {
-      this.x2 = 1697 - this.movSpeed + this.x;
+    if (this.x2 < -1200) {
+      this.x2 = 1200 - this.movSpeed + this.x;
     } else {
       this.x2 -= this.movSpeed;
     }
