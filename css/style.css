@@ -6,6 +6,8 @@
 body {
   background-color: black;
   font-family:'Courier New', Courier, monospace;
+  margin: 80px;
+  background-image: url("../images/");
 }
 
 #start-page,
@@ -21,6 +23,9 @@ body {
   align-items: center;
   justify-content: center;
   margin: auto;
+  border-radius: 30px;
+  border: 3px solid rgb(70, 4, 70);
+  box-shadow: 0px 0px 30px purple;
 }
 
 #start-page {
@@ -131,6 +136,9 @@ canvas {
   display: block;
   margin: 0 auto;
   background-color: black;
+  border-radius: 30px;
+  border: 3px solid rgba(255, 68, 0, 0.486);
+  box-shadow: 0px 0px 30px orangered;
 }
 
 /* Auxiliar classes */

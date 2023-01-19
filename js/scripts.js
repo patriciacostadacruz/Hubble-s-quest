@@ -7,8 +7,6 @@ window.onload = function () {
   const playAgainButton = document.getElementById("play-again");
   const winPage = document.getElementById("win-page");
   const loosePage = document.getElementById("lose-page");
-  /* only works in local but left it as it doesn't create issues */
-  gameMusic.play();
 
   startButton.onclick = function () {
     startPage.style = "display: none";
